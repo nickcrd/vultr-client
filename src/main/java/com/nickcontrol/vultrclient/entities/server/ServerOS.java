@@ -1,5 +1,7 @@
 package com.nickcontrol.vultrclient.entities.server;
 
+import com.nickcontrol.vultrclient.internal.entities.ImplServerOS;
+
 public interface ServerOS
 {
     /*

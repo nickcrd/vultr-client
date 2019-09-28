@@ -88,14 +88,16 @@ public class ConnectionManager
             HttpPost post = new HttpPost(baseUrl + endpoint);
             post.setHeader("API-Key", apiKey);
 
-            HttpResponse res = client.execute(post);
-
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
             for (Map.Entry<String, Object> entry : data.entrySet())
                 params.add(new BasicNameValuePair(entry.getKey(), entry.getValue().toString()));
 
             post.setEntity(new UrlEncodedFormEntity(params));
+
+            HttpResponse res = client.execute(post);
+
+            String d = EntityUtils.toString(res.getEntity());
 
             switch (res.getStatusLine().getStatusCode())
             {
@@ -108,14 +110,14 @@ public class ConnectionManager
                 case 405:
                     throw new VultrAPIException(VultrAPIException.ExceptionType.INVALID_HTTP_METHOD, endpoint, "POST");
                 case 412:
-                    throw new VultrAPIException(VultrAPIException.ExceptionType.REQUEST_FAILED, endpoint, "POST");
+                    throw new VultrAPIException(VultrAPIException.ExceptionType.REQUEST_FAILED, endpoint, "POST", d);
                 case 500:
                     throw new VultrAPIException(VultrAPIException.ExceptionType.INTERNAL_SERVER_ERROR, endpoint, "POST");
                 case 503:
                     throw new VultrAPIException(VultrAPIException.ExceptionType.RATE_LIMIT_EXCEEDED, endpoint);
             }
 
-            String d = EntityUtils.toString(res.getEntity());
+           // String d = EntityUtils.toString(res.getEntity());
             return d;
 
         } catch (IOException e) {

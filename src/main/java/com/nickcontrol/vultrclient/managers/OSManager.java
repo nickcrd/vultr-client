@@ -8,4 +8,5 @@ import java.util.List;
 public interface OSManager
 {
     List<ServerOS> getOSList() throws VultrAPIException;
+    ServerOS getOS(int id);
 }

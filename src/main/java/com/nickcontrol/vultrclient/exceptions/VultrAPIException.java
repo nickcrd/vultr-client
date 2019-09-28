@@ -20,6 +20,15 @@ public class VultrAPIException  extends Exception
         this.httpMethod = httpMethod;
     }
 
+    public VultrAPIException(ExceptionType type, String endpoint, String httpMethod, String message)
+    {
+        this.type = type;
+        this.endpoint = endpoint;
+        this.httpMethod = httpMethod;
+        this.message = message;
+    }
+
+
     public enum ExceptionType {
         INVALID_API_LOCATION,
         INVALID_API_KEY,
@@ -34,9 +43,10 @@ public class VultrAPIException  extends Exception
     private ExceptionType type;
     private String endpoint;
     private String httpMethod;
+    private String message;
 
     @Override
     public String getMessage() {
-        return type.toString() + ": " + (endpoint != null ? endpoint : "") + " " + (httpMethod != null ? httpMethod : "");
+        return type.toString() + ": " + (endpoint != null ? endpoint : "") + " " + (httpMethod != null ? httpMethod : "") + " " + (message != null ? message : "");
     }
 }

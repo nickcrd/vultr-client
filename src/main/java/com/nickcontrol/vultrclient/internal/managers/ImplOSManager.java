@@ -15,12 +15,20 @@ public class ImplOSManager implements OSManager {
 
     private VultrAPI vultrAPI;
 
+    private HashMap<String, ImplServerOS> osCache = new HashMap<>();
+
     public ImplOSManager(VultrAPI vultrAPI)
     {
         this.vultrAPI = vultrAPI;
     }
 
     public List<ServerOS> getOSList() throws VultrAPIException {
-        return new ArrayList<ServerOS>(vultrAPI.getConnectionManager().get(new TypeToken<HashMap<String, ImplServerOS>>(){}, "/v1/os/list").values());
+        osCache = vultrAPI.getConnectionManager().get(new TypeToken<HashMap<String, ImplServerOS>>(){}, "/v1/os/list");
+        return new ArrayList<ServerOS>(osCache.values());
+    }
+
+    public ServerOS getOS(int id)
+    {
+        return osCache.get(String.valueOf(id));
     }
 }
