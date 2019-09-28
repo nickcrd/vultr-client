@@ -2,12 +2,11 @@ package com.nickcontrol.vultrclient.entities.account;
 
 import java.util.Date;
 
-public class AccountInfo
+public interface AccountInfo
 {
-    private int balance;
-    private int pendingCharges;
-    private Date lastPaymentDate;
-    private int lastPaymentAmount;
-
+    double getBalance();
+    double getPendingCharges();
+    Date getLastPaymentDate();
+    double getLastPaymentAmount();
 
 }
