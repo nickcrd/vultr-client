@@ -1,6 +1,8 @@
 package com.nickcontrol.vultrclient.internal;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.nickcontrol.vultrclient.entities.server.ServerOS;
 import com.nickcontrol.vultrclient.exceptions.VultrAPIException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -9,6 +11,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class ConnectionManager
 {
@@ -26,7 +29,17 @@ public class ConnectionManager
         this.apiKey = apiKey;
     }
 
+    public <T> T get(TypeToken<T> typeToken, String endpoint) throws VultrAPIException
+    {
+        return GSON.fromJson(get(endpoint), typeToken.getType());
+    }
+
     public <T> T get(Class<T> tClass, String endpoint) throws VultrAPIException
+    {
+        return GSON.fromJson(get(endpoint), tClass);
+    }
+
+    public String get(String endpoint) throws VultrAPIException
     {
         try {
             HttpGet get = new HttpGet(baseUrl + endpoint);
@@ -53,8 +66,7 @@ public class ConnectionManager
             }
 
             String data = EntityUtils.toString(res.getEntity());
-
-            return GSON.fromJson(data, tClass);
+            return data;
 
         } catch (IOException e) {
             e.printStackTrace();
