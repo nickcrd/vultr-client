@@ -7,7 +7,6 @@ public class ImplServerOS implements ServerOS
     private String OSID, name, arch, family;
     private boolean windows;
 
-
     public int getId() {
         return Integer.parseInt(OSID);
     }
