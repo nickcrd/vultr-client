@@ -11,5 +11,6 @@ Create a VPS:
                     .setApiKey("YOUR_API_KEY_HERE").build();
 
   // This creates a new VPS with 1vCore and 1GB RAM in the Frankfurt Region and installs CentOS (id: 127 from API)
-  vultrAPI.getServerManager().createServer(Region.FRANKFURT, ServerPlan.CC_1vCore_1GB, vultrApi.getOSManager().getOS(127));
+  vultrAPI.getServerManager().createServer("vps-hostname", Region.FRANKFURT, ServerPlan.CC_1vCore_1GB,
+      vultrApi.getOSManager().getOS(127));
 ```
