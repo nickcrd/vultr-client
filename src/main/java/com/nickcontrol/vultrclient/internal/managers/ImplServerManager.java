@@ -31,7 +31,18 @@ public class ImplServerManager implements ServerManager
         data.put("OSID", String.valueOf(os.getId()));
         data.put("hostname", hostname);
 
-        // TODO add support for server options
+        if (options != null)
+        {
+            // Label
+            if (options.getLabel() != null)     data.put("label", options.getLabel());
+            else                                data.put("label", hostname); // Default to hostname
+
+            if (options.getScriptId() != -1)    data.put("SCRIPTID", options.getScriptId());
+
+            // TODO add support for more server options
+        }
+        else
+            data.put("label", hostname); // Set label to hostname if no overwrite exists
 
         String returnedData = vultrAPI.getConnectionManager().post("/v1/server/create", data);
 

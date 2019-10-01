@@ -1,5 +1,7 @@
 package com.nickcontrol.vultrclient.entities.server;
 
+import lombok.Getter;
+
 public class ServerOptions
 {
     /*
@@ -23,5 +25,19 @@ public class ServerOptions
         FIREWALLGROUPID string (optional) The firewall group to assign to this server. See /v1/firewall/group_list.
      */
 
+    @Getter private String label;
+    @Getter private int scriptId = -1;
+
+    public ServerOptions setLabel(String label)
+    {
+        this.label = label;
+        return this;
+    }
+
+    public ServerOptions setScriptId(int scriptId)
+    {
+        this.scriptId = scriptId;
+        return this;
+    }
 
 }
