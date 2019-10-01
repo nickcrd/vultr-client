@@ -82,7 +82,7 @@ public class ConnectionManager
     }
 
 
-    public String post(String endpoint, HashMap<String, Object> data) throws VultrAPIException
+    public String post(String endpoint, Map<String, Object> data) throws VultrAPIException
     {
         try {
             HttpPost post = new HttpPost(baseUrl + endpoint);

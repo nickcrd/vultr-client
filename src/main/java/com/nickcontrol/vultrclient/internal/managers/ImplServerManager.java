@@ -9,10 +9,7 @@ import com.nickcontrol.vultrclient.exceptions.VultrAPIException;
 import com.nickcontrol.vultrclient.internal.entities.ImplServer;
 import com.nickcontrol.vultrclient.managers.ServerManager;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ImplServerManager implements ServerManager
 {
@@ -93,9 +90,7 @@ public class ImplServerManager implements ServerManager
 
     @Override
     public void enablePrivateNetwork(String serverId) throws VultrAPIException {
-        vultrAPI.getConnectionManager().post("/v1/server/private_network_enable", new HashMap<String, Object>() {{
-            put("SUBID", serverId);
-        }});
+        vultrAPI.getConnectionManager().post("/v1/server/private_network_enable", Collections.singletonMap("SUBID", serverId));
     }
 
     @Override
@@ -105,9 +100,7 @@ public class ImplServerManager implements ServerManager
 
     @Override
     public void disablePrivateNetwork(String serverId) throws VultrAPIException {
-        vultrAPI.getConnectionManager().post("/v1/server/private_network_disable", new HashMap<String, Object>() {{
-            put("SUBID", serverId);
-        }});
+        vultrAPI.getConnectionManager().post("/v1/server/private_network_disable", Collections.singletonMap("SUBID", serverId));
     }
 
     @Override
@@ -117,8 +110,8 @@ public class ImplServerManager implements ServerManager
 
     @Override
     public void destroyServer(String serverId) throws VultrAPIException {
-        vultrAPI.getConnectionManager().post("/v1/server/destroy", new HashMap<String, Object>() {{
-            put("SUBID", serverId);
-        }});
+        vultrAPI.getConnectionManager().post("/v1/server/destroy", Collections.singletonMap("SUBID", serverId));
+
+
     }
 }
