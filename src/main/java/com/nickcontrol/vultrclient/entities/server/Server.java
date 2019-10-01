@@ -32,5 +32,4 @@ public interface Server
     PowerState getPowerState();
     ServerState getServerState();
 
-
 }

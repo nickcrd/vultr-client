@@ -118,4 +118,25 @@ public class ImplServer implements Server
     public ServerState getServerState() {
         return ServerState.valueOf(server_state);
     }
+
+    @Override
+    public String toString() {
+        return "ImplServer{" +
+                "SUBID='" + SUBID + '\'' +
+                ", OSID='" + OSID + '\'' +
+                ", VPSPLANID='" + VPSPLANID + '\'' +
+                ", DCID='" + DCID + '\'' +
+                ", vcpu_count='" + vcpu_count + '\'' +
+                ", ram='" + ram + '\'' +
+                ", disk='" + disk + '\'' +
+                ", main_ip='" + main_ip + '\'' +
+                ", internal_ip='" + internal_ip + '\'' +
+                ", default_password='" + default_password + '\'' +
+                ", date_created='" + date_created + '\'' +
+                ", pending_charges='" + pending_charges + '\'' +
+                ", status='" + status + '\'' +
+                ", power_status='" + power_status + '\'' +
+                ", server_state='" + server_state + '\'' +
+                '}';
+    }
 }

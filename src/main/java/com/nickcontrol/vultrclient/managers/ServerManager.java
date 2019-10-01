@@ -19,4 +19,10 @@ public interface ServerManager
     Server getServerById(int subId) throws VultrAPIException;
     Server getServerByIPv4(String ip) throws VultrAPIException;
 
+
+    void enablePrivateNetwork(Server server) throws VultrAPIException;
+    void enablePrivateNetwork(String serverId) throws VultrAPIException;
+
+    void disablePrivateNetwork(Server server) throws VultrAPIException;
+    void disablePrivateNetwork(String serverId) throws VultrAPIException;
 }

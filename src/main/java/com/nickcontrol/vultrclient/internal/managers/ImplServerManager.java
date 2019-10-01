@@ -14,7 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ImplServerManager implements ServerManager {
+public class ImplServerManager implements ServerManager
+{
     private VultrAPI vultrAPI;
 
     public ImplServerManager(VultrAPI vultrAPI)
@@ -83,5 +84,29 @@ public class ImplServerManager implements ServerManager {
         ImplServer server = vultrAPI.getConnectionManager().get(ImplServer.class, "/v1/server/list?main_ip=" + ip);
         server._vultrApi = vultrAPI;
         return server;
+    }
+
+    @Override
+    public void enablePrivateNetwork(Server server) throws VultrAPIException {
+        enablePrivateNetwork(server.getId());
+    }
+
+    @Override
+    public void enablePrivateNetwork(String serverId) throws VultrAPIException {
+        vultrAPI.getConnectionManager().post("/v1/server/private_network_enable", new HashMap<String, Object>() {{
+            put("SUBID", serverId);
+        }});
+    }
+
+    @Override
+    public void disablePrivateNetwork(Server server) throws VultrAPIException {
+        disablePrivateNetwork(server.getId());
+    }
+
+    @Override
+    public void disablePrivateNetwork(String serverId) throws VultrAPIException {
+        vultrAPI.getConnectionManager().post("/v1/server/private_network_disable", new HashMap<String, Object>() {{
+            put("SUBID", serverId);
+        }});
     }
 }
