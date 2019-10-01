@@ -1,5 +1,7 @@
 package com.nickcontrol.vultrclient.entities.server;
 
+import java.util.Arrays;
+
 public enum ServerPlan
 {
      /*
@@ -39,5 +41,10 @@ public enum ServerPlan
     public int getPlanId()
     {
         return planId;
+    }
+
+    public static ServerPlan fromId(int id)
+    {
+        return Arrays.stream(ServerPlan.values()).filter(plan -> plan.getPlanId() == id).findAny().orElse(null);
     }
 }

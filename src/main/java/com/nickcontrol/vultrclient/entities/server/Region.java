@@ -1,5 +1,7 @@
 package com.nickcontrol.vultrclient.entities.server;
 
+import java.util.Arrays;
+
 public enum Region
 {
     /*
@@ -39,6 +41,11 @@ public enum Region
     public String getRegionCode()
     {
         return regionCode;
+    }
+
+    public static Region fromId(String id)
+    {
+        return Arrays.stream(Region.values()).filter(region -> region.getDCID().equals(id)).findAny().orElse(null);
     }
 
 }
