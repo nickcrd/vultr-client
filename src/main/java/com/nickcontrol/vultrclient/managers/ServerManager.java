@@ -2,7 +2,6 @@ package com.nickcontrol.vultrclient.managers;
 
 import com.nickcontrol.vultrclient.entities.server.*;
 import com.nickcontrol.vultrclient.exceptions.VultrAPIException;
-import sun.security.provider.certpath.ssl.SSLServerCertStore;
 
 import java.util.List;
 
@@ -25,4 +24,8 @@ public interface ServerManager
 
     void disablePrivateNetwork(Server server) throws VultrAPIException;
     void disablePrivateNetwork(String serverId) throws VultrAPIException;
+
+    void destroyServer(Server server) throws VultrAPIException;
+    void destroyServer(String serverId) throws VultrAPIException;
+
 }

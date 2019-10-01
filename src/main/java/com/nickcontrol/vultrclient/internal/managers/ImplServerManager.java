@@ -109,4 +109,16 @@ public class ImplServerManager implements ServerManager
             put("SUBID", serverId);
         }});
     }
+
+    @Override
+    public void destroyServer(Server server) throws VultrAPIException {
+        destroyServer(server.getId());
+    }
+
+    @Override
+    public void destroyServer(String serverId) throws VultrAPIException {
+        vultrAPI.getConnectionManager().post("/v1/server/destroy", new HashMap<String, Object>() {{
+            put("SUBID", serverId);
+        }});
+    }
 }
