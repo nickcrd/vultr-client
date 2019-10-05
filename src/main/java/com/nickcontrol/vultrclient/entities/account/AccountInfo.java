@@ -8,5 +8,4 @@ public interface AccountInfo
     double getPendingCharges();
     Date getLastPaymentDate();
     double getLastPaymentAmount();
-
 }
